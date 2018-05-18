@@ -1,0 +1,65 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ru.mirea</groupId>
+	<artifactId>weather-root</artifactId>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<modules>
+		<module>weather-service</module>
+		<module>weather-api</module>
+		<module>weather-impl</module>
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>ru.mirea.weather.Main</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>ru.mirea.weather</groupId>
+			<artifactId>weather-service</artifactId>
+			<version>0.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>ru.mirea.data</groupId>
+			<artifactId>weather-data-source-impl</artifactId>
+			<version>0.1</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>ru.mirea.data</groupId>
+			<artifactId>weather-data-source</artifactId>
+			<version>0.1</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+</project>
